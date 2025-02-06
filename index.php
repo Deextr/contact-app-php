@@ -8,6 +8,7 @@
   <title>Contact Manager</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="statics/css/styles.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     body {
       background-color: #f8f9fa;
@@ -24,26 +25,15 @@
       font-size: 1.5rem;
     }
 
-    .card {
-      border: none;
-      border-radius: 10px;
-      transition: transform 0.2s ease-in-out;
+    .table {
       background: #fff;
+      border-radius: 10px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .card-title {
-      font-size: 1.25rem;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .card-text {
-      color: #666;
+    .table th,
+    .table td {
+      vertical-align: middle;
     }
 
     .btn-warning {
@@ -81,7 +71,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="views/add_contact.php">Add Contact</a>
+            <a class="nav-link" href="views/add_contact.php"><i class="bi bi-person-lines-fill"></i>&nbsp;Add Contact</a>
           </li>
         </ul>
       </div>
@@ -90,29 +80,37 @@
 
   <div class="container my-5">
     <div class="row">
-      <div class="col-md-8 mx-auto">
+      <div class="col-md-10 mx-auto">
         <h1 class="text-center mb-4" style="color: #4b6cb7;">Your Contacts</h1>
         <?php
         $res = $conn->query("SELECT * FROM contacts");
         ?>
         <?php if ($res->num_rows > 0) : ?>
-          <div class="row">
-            <?php while ($row = $res->fetch_assoc()) : ?>
-              <div class="col-md-6 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title"><?= $row['name']; ?></h5>
-                    <p class="card-text text-muted"><?= $row['phone']; ?></p>
-                    <p class="card-text text-muted"><?= $row['email']; ?></p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php while ($row = $res->fetch_assoc()) : ?>
+                <tr>
+                  <td><?= $row['name']; ?></td>
+                  <td><?= $row['phone']; ?></td>
+                  <td><?= $row['email']; ?></td>
+                  <td>
                     <div class="d-flex gap-2">
-                      <a href="views/update_contact.php?id=<?= $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                      <a href="handlers/delete_contact_handler.php?id=<?= $row['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                      <a href="views/update_contact.php?id=<?= $row['id']; ?>" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i>&nbsp;Edit</a>
+                      <a href="handlers/delete_contact_handler.php?id=<?= $row['id']; ?>" class="btn btn-danger btn-sm"><i class="bi bi-trash3-fill"></i>&nbsp;Delete</a>
                     </div>
-                  </div>
-                </div>
-              </div>
-            <?php endwhile; ?>
-          </div>
+                  </td>
+                </tr>
+              <?php endwhile; ?>
+            </tbody>
+          </table>
         <?php else : ?>
           <div class="text-center">
             <p class="text-muted">🎉 No contacts found! Add a new contact.</p>
