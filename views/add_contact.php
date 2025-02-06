@@ -7,6 +7,8 @@
   <title>Add Contact</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="../statics/css/styles.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
   <style>
     body {
       background-color: #f8f9fa;
@@ -72,7 +74,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../index.php">Home</a>
+            <a class="nav-link" href="../index.php"><i class="bi bi-house-door-fill"></i>&nbsp;Home</a>
           </li>
         </ul>
       </div>
@@ -98,7 +100,7 @@
               <label for="email" class="form-label">Email</label>
               <input type="email" class="form-control" name="email" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Save Contact</button>
+            <button type="submit" class="btn btn-primary w-100">Save Contact&nbsp;&nbsp;<i class="bi bi-download"></i></button>
           </form>
         </div>
       </div>
