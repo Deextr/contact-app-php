@@ -1,0 +1,18 @@
+CREATE DATABASE IF NOT EXISTS contact_app;
+
+USE contact_app;
+
+CREATE TABLE IF NOT EXISTS contacts (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    user_id INT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS users (
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(100) NOT NULL,
+        password LONGTEXT(200) NOT NULL
+);
